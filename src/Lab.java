@@ -162,6 +162,7 @@ public class Lab
   public void run()
   {
 	  int speed = display.getSpeed();
+	  //Idk what's going wrong with this, it should be making it so that you can seed cells without it being updated too quickly, but it's nots
 	  if(speed == 0)
 	  {
 		  while(true)
