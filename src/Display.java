@@ -61,7 +61,7 @@ public class Display extends JComponent implements MouseListener,
     
     buttons[tool].setSelected(true);
    
-    slider = new JSlider(JSlider.HORIZONTAL, 0, 100, 50);
+    slider = new JSlider(JSlider.HORIZONTAL, 0, 10, 5);
     slider.addChangeListener(this);
     slider.setMajorTickSpacing(5);
     slider.setSnapToTicks(true);
@@ -180,7 +180,7 @@ public class Display extends JComponent implements MouseListener,
   //unless the sliderValue is set to 0, then it return 0
   private int computeSpeed(int sliderValue)
   {
-	  return sliderValue/100;
+	  return sliderValue;
 //	if(sliderValue == 0)
 //	{
 //		return 0;
