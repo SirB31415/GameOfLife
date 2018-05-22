@@ -188,3 +188,4 @@ public class Display extends JComponent implements MouseListener,
 //    return (int)Math.pow(10, 0.05 * sliderValue + 1);
   }
 }
+}

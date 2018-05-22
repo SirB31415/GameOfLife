@@ -30,8 +30,8 @@ public class Lab
     // Each value needs a name for the button
     names[EMPTY] = "Empty";
     names[ALIVE] = "Alive";
-//    names[SAND] = "Sand";
-//    names[WATER] = "Water";
+    names[SAND] = "Sand";
+    names[WATER] = "Water";
     
     //1. Add code to initialize the data member grid with same dimensions
     grid = new int[numRows][numCols];
@@ -71,7 +71,7 @@ public class Lab
 			  }
 			  else if(grid[i][j] == WATER)
 			  {
-				  display.setColor(i,j,Color.BLUE);
+				  display.setColor(i,j,randomColor);
 			  }
 		  }
 	  }
@@ -89,6 +89,8 @@ public class Lab
 //	  int randRow = (int) (Math.random() * grid.length);
 //	  int randCol = (int) (Math.random() * grid[0].length);
 //	  int randDirection = (int) (Math.random() * 3);
+	  
+	  int randColorPicker = (int) (Math.random() * 4);
 
 	  for(int i = 0; i < grid.length; i++)
 	  {
@@ -97,40 +99,40 @@ public class Lab
 			  //in the future I should make a method called getNumberOfNeighbors to call and simplify this method
 			  int numberOfNeighbors = 0;
 			  //I could probably substitute all of these if statements with a couple for loops
-			  if(i+1 < grid.length && grid[i+1][j]==ALIVE)
+			  if(i+1 < grid.length && grid[i+1][j]==ALIVE || i+1 < grid.length && grid[i+1][j]==SAND || i+1 < grid.length && grid[i+1][j]==WATER)
 			  {
 				  numberOfNeighbors++;
 			  }
-			  if(i > 0 && grid[i-1][j]==ALIVE)
+			  if(i > 0 && grid[i-1][j]==ALIVE || i > 0 && grid[i-1][j]==SAND || i > 0 && grid[i-1][j]==WATER)
 			  {
 				  numberOfNeighbors++;
 			  }
-			  if(j+1 < grid[i].length && grid[i][j+1]==ALIVE)
+			  if(j+1 < grid[i].length && grid[i][j+1]==ALIVE || j+1 < grid[i].length && grid[i][j+1]==SAND || j+1 < grid[i].length && grid[i][j+1]==WATER)
 			  {
 				  numberOfNeighbors++;
 			  }
-			  if(j > 0 && grid[i][j-1]==ALIVE)
+			  if(j > 0 && grid[i][j-1]==ALIVE || j > 0 && grid[i][j-1]==SAND || j > 0 && grid[i][j-1]==WATER)
 			  {
 				  numberOfNeighbors++;
 			  }
-			  if(i+1 < grid.length && j+1 < grid[i].length && grid[i+1][j+1]==ALIVE)
+			  if(i+1 < grid.length && j+1 < grid[i].length && grid[i+1][j+1]==ALIVE || i+1 < grid.length && j+1 < grid[i].length && grid[i+1][j+1]==SAND || i+1 < grid.length && j+1 < grid[i].length && grid[i+1][j+1]==WATER)
 			  {
 				  numberOfNeighbors++;
 			  }
-			  if(j > 0 && i+1 < grid.length && grid[i+1][j-1]==ALIVE)
+			  if(j > 0 && i+1 < grid.length && grid[i+1][j-1]==ALIVE || j > 0 && i+1 < grid.length && grid[i+1][j-1]==SAND || j > 0 && i+1 < grid.length && grid[i+1][j-1]==WATER)
 			  {
 				  numberOfNeighbors++;
 			  }
-			  if(i > 0 && j+1 < grid[i-1].length && grid[i-1][j+1]==ALIVE)
+			  if(i > 0 && j+1 < grid[i-1].length && grid[i-1][j+1]==ALIVE || i > 0 && j+1 < grid[i-1].length && grid[i-1][j+1]==SAND || i > 0 && j+1 < grid[i-1].length && grid[i-1][j+1]==WATER)
 			  {
 				  numberOfNeighbors++;
 			  }
-			  if(i > 0 && j > 0 && grid[i-1][j-1]==ALIVE)
+			  if(i > 0 && j > 0 && grid[i-1][j-1]==ALIVE || i > 0 && j > 0 && grid[i-1][j-1]==SAND || i > 0 && j > 0 && grid[i-1][j-1]==WATER)
 			  {
 					  numberOfNeighbors++;
 			  }
 			  
-			  if(grid[i][j] == ALIVE)
+			  if(grid[i][j] == ALIVE || grid[i][j] == WATER || grid[i][j] == SAND)
 			  {
 				  //Conway's first rule: "Any live cell with fewer than two live neighbors dies, as if by under population."
 				  if(numberOfNeighbors < 2)
@@ -141,7 +143,18 @@ public class Lab
 				  if(numberOfNeighbors == 2 || numberOfNeighbors == 3)
 				  {
 					  //I don't think this step is necessary but it shows consistency of the rules
-					  grid[i][j] = ALIVE;
+					  if(randColorPicker == 1)
+					  {
+						  grid[i][j] = ALIVE;
+					  }
+					  if(randColorPicker == 2)
+					  {
+						  grid[i][j] = SAND;
+					  }
+					  if(randColorPicker == 3)
+					  {
+						  grid[i][j] = WATER;
+					  }
 				  }
 				  //Conway's third rule: "Any live cell with more than three live neighbors dies, as if by overpopulation."
 				  if(numberOfNeighbors > 3)
@@ -153,7 +166,19 @@ public class Lab
 			  //Conway's fourth rule: "Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction."
 			  if(grid[i][j] == EMPTY && numberOfNeighbors == 3)
 			  {
-				  grid[i][j] = ALIVE;
+//				  if(randColorPicker == 1)
+//				  {
+//					  grid[i][j] = ALIVE;
+//				  }
+//				  if(randColorPicker == 2)
+//				  {
+//					  grid[i][j] = SAND;
+//				  }
+//				  if(randColorPicker == 3)
+//				  {
+					  grid[i][j] = WATER;
+//				  }
+				  
 			  }
 		  }
 	  }
@@ -167,7 +192,7 @@ public class Lab
 	  {
 		  while(true)
 		  {
-			  display.pause(1000);
+			  display.pause(10);
 		  }
 	  }
 	  while (true)
@@ -184,7 +209,7 @@ public class Lab
 			  step();
 			  updateDisplay();
 			  display.repaint();
-			  display.pause(250);
+			  display.pause(500);
 	      }
 	  }
   }
