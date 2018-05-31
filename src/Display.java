@@ -61,11 +61,11 @@ public class Display extends JComponent implements MouseListener,
     
     buttons[tool].setSelected(true);
    
-    slider = new JSlider(JSlider.HORIZONTAL, 0, 10, 5);
-    slider.addChangeListener(this);
-    slider.setMajorTickSpacing(5);
-    slider.setSnapToTicks(true);
-    slider.setPaintTicks(true);
+//    slider = new JSlider(JSlider.HORIZONTAL, 0, 10, 5);
+//    slider.addChangeListener(this);
+//    slider.setMajorTickSpacing(5);
+//    slider.setSnapToTicks(true);
+//    slider.setPaintTicks(true);
     Hashtable<Integer, JLabel> labelTable = new Hashtable<Integer, JLabel>();
     labelTable.put(new Integer(0), new JLabel("Slow"));
     labelTable.put(new Integer(100), new JLabel("Fast"));
